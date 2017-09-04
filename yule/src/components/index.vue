@@ -1,8 +1,8 @@
 <template>
  
- <div>  
+ <div class="box">  
    
-   <mt-header class="heards" fixed title="大秦之子">
+   <mt-header class="heards" title="大秦之子">
       <mt-button icon="more" slot="right"></mt-button>
    </mt-header>
     <!-- tabcontainer -->  
@@ -21,12 +21,13 @@
               <mt-cell title="藏头诗生成" label="百万音乐等你听" is-link></mt-cell>
               <mt-cell title="星座运势" label="百万音乐等你听" is-link></mt-cell>
         </mt-tab-container-item>
-         <mt-tab-container-item id="users">
-           <!-- 我的 -->
-          <mt-cell v-for="n in 20" title="tab-container 3"></mt-cell>
+         <mt-tab-container-item class="box3" id="users">
+           <!-- 我的 -->  
+
+
         </mt-tab-container-item>
       </mt-tab-container>
-    
+
   
     <mt-tabbar v-model="selected" fixed>  
       <mt-tab-item id="jiaoliu">  
@@ -38,7 +39,7 @@
         <img slot="icon" src="../assets/cry.png">  
         娱乐生活 
       </mt-tab-item>  
-      <mt-tab-item id="users">  
+      <mt-tab-item id="users" @click.native="denglu()">  
         <img slot="icon" src="../assets/cry.png">  
         我的  
       </mt-tab-item>  
@@ -55,21 +56,33 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      selected:'kuaile'
+      selected:'kuaile',
+      user:''
     }
   },created(){
+    this.user =  localStorage.getItem("user_id")
   
+ 
   },mounted(){
-       console.log(this.selected)
+     
+  },methods:{
+    denglu(){
+      if(this.user == null){
+        this.$router.push({name:'login'})
+      }
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .swiperOne img{
-    width: 100%;
-    height: 100%;
-  }
+<style scoped lang="scss">
+.box{
+  width: 100%;
+  height: 100%;
+}
+
+
+
     
 </style>
