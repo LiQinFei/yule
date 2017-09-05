@@ -7,15 +7,28 @@
    </mt-header>
     <!-- tabcontainer -->  
       <mt-tab-container v-model="selected">
-        <mt-tab-container-item id="jiaoliu">
+        <mt-tab-container-item id="jiaoliu" class="box1">
       
       <!-- 聊天 -->
+            <ul class="list">
+              <li>
+                <img src="../assets/liaotian.jpg" alt="">
+                <h4>一起来吐槽</h4>
+              </li>
+              <li>
+                <img src="../assets//fenxiang.jpg" alt="">
+                <h4>分享留言</h4>
+              </li>
+            
+            </ul>
+
+
             <mt-cell title="一起来吐槽" label="万人同时在线聊天，快乐无极限" is-link></mt-cell>
             <mt-cell title="分享留言" label="留下自己的脚步，分享自己的快乐" is-link></mt-cell>
           
         </mt-tab-container-item>
-    
-        <mt-tab-container-item id="kuaile">
+
+        <mt-tab-container-item id="kuaile" class="box2">
           <!-- 娱乐 -->
               <mt-cell title="大秦音乐" label="百万音乐等你听" is-link></mt-cell>
               <mt-cell title="藏头诗生成" label="百万音乐等你听" is-link></mt-cell>
@@ -63,7 +76,6 @@
 </template>
 
 <script>
-
 
  import { Toast } from 'mint-ui'
 export default {
@@ -220,7 +232,33 @@ export default {
   box-sizing: border-box;
 }
 
-
+.box1{
+  width: 100%;
+  box-sizing: border-box;
+  .list{
+    width: 100%;
+    display: flex;
+    padding: 2px;
+  box-sizing: border-box;
+    
+    li{
+      padding: 2px;
+      width: 50%;
+      position: relative;
+      h4{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        color: #ffffff;
+      }
+      img{
+      
+        width: 100%;
+      }
+    }
+  }
+}
 
     
 </style>

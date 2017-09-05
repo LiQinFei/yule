@@ -27,8 +27,24 @@ export default {
   html,body{
     width: 100%;
     height: 100%;
-   margin: 0;
-   padding: 0;
+
     }
+    
+
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
+
  
+ul,ol{list-style-type:none;} 
+select,input,img,select{vertical-align:middle;} 
+  a{
+    text-decoration: none;
+      margin: 0;
+    padding: 0;
+
+  }
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 </style>
