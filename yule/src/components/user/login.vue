@@ -30,15 +30,15 @@
 <script>
 
 
-
+ import { Toast } from 'mint-ui'
 export default {
   name: 'hello',
   data () {
     return {
+        
             username:'',
             password:''
 
-    
     }
   },created(){
     
@@ -50,7 +50,7 @@ export default {
           this.$router.push({name:'register'})
       },
       login(){
-          console.log(8)
+           var that = this
              this.$ajax({
                 method: 'post',
                 url: 'http://www.localhost:3000/login',
@@ -59,7 +59,36 @@ export default {
                     password:this.password
                 }
             }).then(function(res){
-                console.log(res)
+          
+                    switch (res.data.status){
+                        case '0':
+                         Toast({
+                            message: res.data.msg,
+                            position: 'bottom',
+                            duration: 2000
+                        });
+                     
+                        break;
+                        case '1':
+                        localStorage.setItem('user_id',res.data.user_id)
+                        that.$router.push({name:'index'})
+                        Toast({
+                            message: res.data.msg,
+                            position: 'bottom',
+                            duration: 2000
+                        });
+                        break;
+                        case '-1':
+                        Toast({
+                            message: res.data.msg,
+                            position: 'bottom',
+                            duration: 2000
+                        });   
+                        break;
+
+
+                    }
+               
             })
       }
   }

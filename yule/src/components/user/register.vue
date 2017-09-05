@@ -18,7 +18,7 @@
     <mt-field label="生日" placeholder="请输入生日" type="date" v-model="birthday"></mt-field>
 
   <div class="butt">
-    <mt-button type="default" size="large">注册</mt-button>    
+    <mt-button type="default" size="large" @click="register">注册</mt-button>    
   
   </div>
    
@@ -32,9 +32,10 @@
 <script>
 
 
-
+  import { Toast } from 'mint-ui'
 export default {
-  name: 'hello',
+
+ 
   data () {
     return {
             username:'',
@@ -50,7 +51,47 @@ export default {
     
   
   },mounted(){
-      
+       
+  },methods:{
+    register(){
+      var that = this
+      var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+           
+      if(this.username == '' || this.password == '' || this.email == '' || this.phone == '' || this.birthday == '' ||!myreg.test(this.email) || !(/^1[34578]\d{9}$/.test(this.phone))){
+        Toast({
+          message: '格式错误',
+          position: 'bottom',
+          duration: 1000
+        });
+      } 
+      else{
+        this.$ajax({
+                  method: 'post',
+                  url: 'http://www.localhost:3000/register',
+                  data: {
+                      username: this.username,
+                      password:this.password,
+                      email:this.email,
+                      phone:this.phone,
+                      birthday:this.birthday
+                  }
+              }).then(function(res){
+          
+                    if(res.data.status == 1){
+                    that.$router.push({name:'login'})
+              
+                  }
+                  Toast({
+                    message: res.data.msg,
+                    position: 'bottom',
+                    duration: 2000
+                  });
+                  
+              })
+      }
+     
+    }
   }
 }
 </script>

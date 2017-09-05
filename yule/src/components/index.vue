@@ -22,9 +22,24 @@
               <mt-cell title="星座运势" label="百万音乐等你听" is-link></mt-cell>
         </mt-tab-container-item>
          <mt-tab-container-item class="box3" id="users">
-           <!-- 我的 -->  
+           <!-- 我的 --> 
+          <div class="header_src">
+           <img  v-bind:src="src" alt="">  
+           <input type="file" @change="onFileChange" accept="image/*" >
+           <p>修改图像</p>
+            <mt-button type="danger" v-if="upImg" @click="upImgs">确定修改</mt-button>
+          </div>
 
-
+          <mt-cell v-bind:title="'昵称：'+data.username" ></mt-cell>
+          <mt-cell v-bind:title="'电话：'+data.phone" ></mt-cell>
+          <mt-cell v-bind:title="'email：'+data.email" ></mt-cell>
+          <mt-cell v-bind:title="'出生日期：'+data.birthday" ></mt-cell>
+          <div class="close">
+              <mt-button type="default" size="large" @click="close">退出登录</mt-button>
+          </div>
+          
+       
+    
         </mt-tab-container-item>
       </mt-tab-container>
 
@@ -50,27 +65,120 @@
 <script>
 
 
-
+ import { Toast } from 'mint-ui'
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       selected:'kuaile',
-      user:''
+      user:'',
+      data:[],
+      src:'',
+      upImg:false
     }
   },created(){
     this.user =  localStorage.getItem("user_id")
-  
+    if(this.user){
+        this.getUser()
+    }
  
   },mounted(){
      
   },methods:{
+    getUser(){
+            var that = this
+           this.$ajax({
+                  method: 'post',
+                  url: 'http://www.localhost:3000/getUser',
+                  data: {
+                      user_id: that.user
+                  }
+              }).then(function(res){
+          
+                
+                  that.data = res.data
+                  that.src = 'http://localhost:3000/'+res.data.usersrc
+              
+                  
+                  
+                  
+              })
+    },
     denglu(){
       if(this.user == null){
         this.$router.push({name:'login'})
       }
+    },onFileChange(e) {
+  var files = e.target.files || e.dataTransfer.files;
+
+  if (!files.length){
+      return;
+  }
+  
+   this.createImage(files[0]);
+   
+  },
+  createImage(file) {
+    var that = this
+
+  
+   let imgSize = file.size;
+    if(imgSize < 1024 * 1024 *1){
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function(event){
+        let txt = event.target.result;
+        that.src = txt
+        that.upImg = true
+      
+
+      };
+    } else {
+      Toast({
+        message: '图片必须小于1M',
+        position: 'bottom',
+        duration: 1000
+    });   
     }
+  },upImgs(){
+     var that = this
+           this.$ajax({
+                  method: 'post',
+                  url: 'http://www.localhost:3000/upsrc',
+                  data: {
+                      user_id: that.user,
+                      srcUp:that.src
+                  }
+              }).then(function(res){
+          
+                  console.log(res)
+               
+
+                if(res.data.status == '1'){
+                      that.upImg = false
+                       Toast({
+                        message: '上传成功',
+                        position: 'bottom',
+                        duration: 1000
+                    }); 
+                }else{
+                    Toast({
+                        message: '上传失败',
+                        position: 'bottom',
+                        duration: 1000
+                    }); 
+                }
+                  
+                  
+                  
+              })
+  },close(){
+    
+    this.user = null
+    this.$router.push({name:'login'})
+    localStorage.clear();
+  }
   }
 }
 </script>
@@ -80,6 +188,36 @@ export default {
 .box{
   width: 100%;
   height: 100%;
+}
+.header_src{
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  input{
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%,0);
+   opacity: 0;
+
+  }
+  img{
+     display: inline-block;
+    width: 100px;
+    height: 100px;
+     border-radius: 50%;
+  }
+  
+}
+.close{
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 
