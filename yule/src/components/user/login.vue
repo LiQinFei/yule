@@ -71,6 +71,7 @@ export default {
                         break;
                         case '1':
                         localStorage.setItem('user_id',res.data.user_id)
+                        localStorage.setItem('name',res.data.name)
                         that.$router.push({name:'index'})
                         Toast({
                             message: res.data.msg,

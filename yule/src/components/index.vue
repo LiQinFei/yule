@@ -1,8 +1,5 @@
 <template>
- 
  <div class="box">  
-   
- 
     <!-- tabcontainer -->  
       <mt-tab-container v-model="selected" class="boxs">
         <mt-tab-container-item id="jiaoliu" class="box1">
@@ -12,14 +9,17 @@
       <!-- 聊天 -->
             <ul class="list">
               <li>
+               <router-link to="/chat">
                 <img src="../assets/liaotian.jpg" alt="">
                 <h4>万人吐槽</h4>
+                </router-link>
               </li>
               <li>
-                <img src="../assets/fenxiang.jpg" alt="">
-                <h4>分享留言</h4>
+                <router-link to="/share">
+                    <img src="../assets/fenxiang.jpg" alt="">
+                    <h4>分享留言</h4>
+                </router-link>
               </li>
-            
             </ul>
               <img class="box1bg" src="../assets/hei.jpg" alt="">
 
@@ -108,7 +108,7 @@
 </template>
 
 <script>
-
+var url = 'http://www.localhost:3000/'
  import { Toast } from 'mint-ui'
 export default {
   name: 'hello',
@@ -134,7 +134,7 @@ export default {
             var that = this
            this.$ajax({
                   method: 'post',
-                  url: 'http://www.localhost:3000/getUser',
+                  url: url+'getUser',
                   data: {
                       user_id: that.user
                   }
@@ -142,7 +142,7 @@ export default {
           
                 
                   that.data = res.data
-                  that.src = 'http://localhost:3000/'+res.data.usersrc
+                  that.src = url+res.data.usersrc
               
                   
                   
@@ -189,7 +189,7 @@ export default {
      var that = this
            this.$ajax({
                   method: 'post',
-                  url: 'http://www.localhost:3000/upsrc',
+                  url: url + 'upsrc',
                   data: {
                       user_id: that.user,
                       srcUp:that.src
