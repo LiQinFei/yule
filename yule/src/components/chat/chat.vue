@@ -211,6 +211,7 @@ export default {
                    background:none;  
                     outline:none;  
                     border: 1px solid #dddddd;
+                    margin-top: 2px;
                     
                     
                 }
