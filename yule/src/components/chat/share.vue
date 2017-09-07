@@ -1,31 +1,36 @@
 <template>
   <div>
     
-      <mt-header class="heards">
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
-        <mt-button size="small" type="default" slot="right">分享文章</mt-button>
-      </mt-header>
-         <mt-cell class="lis" is-link>
-           <div>
-             <img src="../../assets/fenxiang.jpg" alt="">
-           </div>
-           <div>
-              <h4>大家好<span>——大秦之子</span></h4>
-              <p>分享生活每一天</p>
-           </div>
-         </mt-cell>
-          <mt-cell class="lis" is-link>
-           <div>
-             <img src="../../assets/fenxiang.jpg" alt="">
-           </div>
-           <div>
-              <h4>大家好</h4>
-              <p>分享生活每一天</p>
-           </div>
-         </mt-cell>
+       <mt-header class="heards">
+        
+          <mt-button icon="back"  @click="back" slot="left">返回</mt-button>
+      
 
+         <router-link to="/text" slot="right">
+        <mt-button  >发表文章</mt-button>
+          </router-link>
+      </mt-header>
+
+          
+         <ul>
+        
+          <li class="lis" is-link v-for="item in data">
+            <router-link :to="'/textdetail/'+item.ID">
+                    <div>
+                      <img :src="'http://localhost:3000/images/'+item.src" alt="">
+                    </div>
+                    <div>
+                        <h4>{{item.title}}<span>——{{item.name}}</span></h4>
+                        <p>{{item.introduction}}</p>
+                    </div>
+            </router-link>
+         </li>
+
+        
+         </ul>
+        
+      
+    
 
        
   </div>
@@ -36,12 +41,9 @@
 export default {
   data(){
     return {
-        
+        data:''
     }
-  },created(){
-          
-        },
-beforeRouteEnter(to, from, next) {
+  },beforeRouteEnter(to, from, next) {
       let oo = localStorage.getItem("user_id");
       if(oo == null){
           Toast({
@@ -53,33 +55,71 @@ beforeRouteEnter(to, from, next) {
       } else {
         next()
       }
-    }
+    },
+  created(){
+           this.getList()
+        },methods:{
+             getList(){
+          var that = this
+           this.$ajax({
+                  method: 'get',
+                  url: url+'getlist',
+                  data: {
+                      
+                  }
+              }).then(function(res){
+          
+                
+               
+                that.data = res.data
+                  
+                  
+                  
+              })
+          },back(){
+           this.$router.back(-1)
+         }
+        }
+
 }
 </script>
 
 <style scoped lang="scss">
 
+    ul{
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
     .lis{
-     
-      display: flex;
-  
+      border-bottom: 1px solid #dddddd;
+      a{
 
+        color: #888;
+        display: flex;
       div{
         &:first-child{
-            width: 30%;
+            flex: 0 0 5rem;
+            height: 5rem;
              padding: 0.5rem;
              box-sizing: border-box;
             img{
               width: 100%;
+              height: 100%;
             }
         }
         &:last-child{
-            width: 70%;
+            flex: 1;
             padding-left: 1rem;
           h4{
+            margin-top: 1rem;
+            position: relative;
             span{
+              position: absolute;
+              
               display: inline-block;
-              margin-left: 1rem;
+              right: 1rem;
+              top: 2rem;
               font-size: 0.7rem;
             }
           }
@@ -91,5 +131,7 @@ beforeRouteEnter(to, from, next) {
         }
       }
     }
+    }
+  
   
 </style>

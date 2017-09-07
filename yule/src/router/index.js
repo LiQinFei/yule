@@ -8,6 +8,9 @@ import register from '@/components/user/register'
 //聊天分享
 import chat from '@/components/chat/chat'
 import share from '@/components/chat/share'
+import text from '@/components/chat/text'
+import textdetail from '@/components/chat/textdetail'
+import userList from '@/components/user/userList'
 
 Vue.use(Router)
 
@@ -33,6 +36,18 @@ export default new Router({
             path: '/share',
             name: 'share',
             component: share //分享
+        }, {
+            path: '/text',
+            name: 'text',
+            component: text //写文章
+        }, {
+            path: '/textdetail/:id',
+            name: 'textdetail',
+            component: textdetail //文章详情
+        }, {
+            path: '/userList',
+            name: 'userList',
+            component: userList //我的文章列表
         }
     ]
 })

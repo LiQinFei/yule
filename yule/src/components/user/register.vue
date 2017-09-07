@@ -69,7 +69,7 @@ export default {
       else{
         this.$ajax({
                   method: 'post',
-                  url: 'http://www.localhost:3000/register',
+                  url: url+'register',
                   data: {
                       username: this.username,
                       password:this.password,

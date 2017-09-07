@@ -81,6 +81,8 @@ export default {
   created(){
       this.socket = io.connect('http://localhost:3000');
         this.name =localStorage.getItem('name')
+
+        
         this.time = this.getNowFormatDate()
         
   },mounted(){

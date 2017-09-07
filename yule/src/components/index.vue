@@ -73,13 +73,16 @@
            <input type="file" @change="onFileChange" accept="image/*" >
            <p>修改图像</p>
             <mt-button type="danger" v-if="upImg" @click="upImgs">确定修改</mt-button>
+           
           </div>
 
           <mt-cell v-bind:title="'昵称：'+data.username" ></mt-cell>
           <mt-cell v-bind:title="'电话：'+data.phone" ></mt-cell>
           <mt-cell v-bind:title="'email：'+data.email" ></mt-cell>
           <mt-cell v-bind:title="'出生日期：'+data.birthday" ></mt-cell>
+          <mt-cell title="我的发表"  to="/userList" is-link value="点击查看"></mt-cell>
           <div class="close">
+
               <mt-button type="default" size="large" @click="close">退出登录</mt-button>
           </div>
           
@@ -108,7 +111,6 @@
 </template>
 
 <script>
-var url = 'http://www.localhost:3000/'
  import { Toast } from 'mint-ui'
 export default {
   name: 'hello',
@@ -266,6 +268,7 @@ export default {
   width: 100%;
   text-align: center;
   padding: 20px;
+  margin-top: 1rem;
   box-sizing: border-box;
 }
 

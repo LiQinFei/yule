@@ -53,7 +53,7 @@ export default {
            var that = this
              this.$ajax({
                 method: 'post',
-                url: 'http://www.localhost:3000/login',
+                url: url+'login',
                 data: {
                     username: this.username,
                     password:this.password
