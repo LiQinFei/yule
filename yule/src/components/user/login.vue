@@ -29,6 +29,7 @@
 
 <script>
 
+import { Indicator } from 'mint-ui';
 
  import { Toast } from 'mint-ui'
 export default {
@@ -43,7 +44,14 @@ export default {
   },created(){
     
   
-  },mounted(){
+  },beforeCreate(){
+    //   Indicator.open()
+    }
+    , updated(){
+      Indicator.close()
+    }
+  ,
+  mounted(){
       
   },methods:{
       register(){
@@ -51,6 +59,8 @@ export default {
       },
       login(){
            var that = this
+                 Indicator.open()     
+
              this.$ajax({
                 method: 'post',
                 url: url+'login',
@@ -59,7 +69,8 @@ export default {
                     password:this.password
                 }
             }).then(function(res){
-          
+                    Indicator.close()
+                        
                     switch (res.data.status){
                         case '0':
                          Toast({

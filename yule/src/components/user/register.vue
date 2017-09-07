@@ -32,7 +32,7 @@
 
 <script>
 
-
+import { Indicator } from 'mint-ui';
   import { Toast } from 'mint-ui'
 export default {
 
@@ -67,6 +67,8 @@ export default {
         });
       } 
       else{
+        Indicator.open()     
+
         this.$ajax({
                   method: 'post',
                   url: url+'register',
@@ -78,7 +80,8 @@ export default {
                       birthday:this.birthday
                   }
               }).then(function(res){
-          
+                              Indicator.close()
+
                     if(res.data.status == 1){
                     that.$router.push({name:'login'})
               

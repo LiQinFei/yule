@@ -43,13 +43,20 @@
 </template>
 
 <script>
+ import { Indicator } from 'mint-ui';
+
  import { Toast } from 'mint-ui'
 export default {
   data(){
     return {
         data:''
     }
-  },beforeRouteEnter(to, from, next) {
+  },beforeCreate(){
+       Indicator.open()
+    }
+    , updated(){
+      Indicator.close()
+    },beforeRouteEnter(to, from, next) {
       let oo = localStorage.getItem("user_id");
       if(oo == null){
           Toast({

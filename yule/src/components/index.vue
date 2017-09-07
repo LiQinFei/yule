@@ -111,19 +111,22 @@
 </template>
 
 <script>
+import { Indicator } from 'mint-ui';
  import { Toast } from 'mint-ui'
 export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+    
       selected:'kuaile',
       user:'',
       data:[],
       src:'',
       upImg:false
     }
-  },created(){
+  },
+  created(){
+   
     this.user =  localStorage.getItem("user_id")
     if(this.user){
         this.getUser()
@@ -133,6 +136,7 @@ export default {
      
   },methods:{
     getUser(){
+          
             var that = this
            this.$ajax({
                   method: 'post',
@@ -152,6 +156,7 @@ export default {
               })
     },
     denglu(){
+
       if(this.user == null){
         this.$router.push({name:'login'})
       }
@@ -189,6 +194,7 @@ export default {
     }
   },upImgs(){
      var that = this
+      
            this.$ajax({
                   method: 'post',
                   url: url + 'upsrc',

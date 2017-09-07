@@ -79,7 +79,7 @@ export default {
   
   
   created(){
-      this.socket = io.connect('http://localhost:3000');
+      this.socket = io.connect('http://139.224.227.124:3000');
         this.name =localStorage.getItem('name')
 
         
@@ -201,12 +201,12 @@ export default {
             }
             .foots{
                 width: 100%;
-                height: 10%;
+                height: 40px;
                 box-sizing: border-box;
                 padding: 0.4rem;
                 display: flex;
                 input{
-                    height: 50%;
+                    height: 100%;
                     border-radius: 10px;
                     padding: 0.3rem;
                     flex: 1;

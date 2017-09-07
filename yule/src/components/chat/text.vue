@@ -38,6 +38,7 @@
 </template>
 
 <script>
+ import { Indicator } from 'mint-ui'
  import { Toast } from 'mint-ui'
 export default {
   data(){
@@ -79,6 +80,8 @@ export default {
                       duration: 2000
                   });   
              }else{
+                      Indicator.open()
+
                 this.$ajax({
                     method: 'post',
                     url: url+'publish',
@@ -90,6 +93,8 @@ export default {
                         user_id:this.user_id
                     }
                 }).then(function(res){
+                        Indicator.close()
+
                     if(res.data.status == '1'){
                         Toast({
                           message: '发表成功',

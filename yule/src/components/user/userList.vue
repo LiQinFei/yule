@@ -13,7 +13,7 @@
 
           <mt-cell v-for="list in data" v-bind:title="list.title" class="lists" :to="'/textdetail/'+list.ID">
             <mt-button class="buttons" type="danger" v-on:click.stop.prevent ="del(list.ID)">删除</mt-button>
-            <img slot="icon" :src="'http://localhost:3000/images/'+list.src" width="25" height="25">
+            <img slot="icon" :src="'http://139.224.227.124:3000/images/'+list.src" width="25" height="25">
         </mt-cell>
         
         
@@ -27,12 +27,20 @@
 <script>
  import { Toast } from 'mint-ui'
  import { MessageBox } from 'mint-ui';
+ import { Indicator } from 'mint-ui';
+
 export default {
   data(){
     return {
         data:''
     }
-  },beforeRouteEnter(to, from, next) {
+  },beforeCreate(){
+       Indicator.open()
+    }
+    , updated(){
+      Indicator.close()
+    }
+  ,beforeRouteEnter(to, from, next) {
       let oo = localStorage.getItem("user_id");
       if(oo == null){
           Toast({
@@ -65,6 +73,7 @@ export default {
          },del(id){
            var that = this
            MessageBox.confirm('确定删除？').then(action => {
+       Indicator.open()
                   
            this.$ajax({
                   method: 'post',
@@ -72,7 +81,9 @@ export default {
                   data: {
                       id:id
                   }
-              }).then(function(res){              
+              }).then(function(res){  
+        Indicator.close()
+                            
                   if(res.data.status == '1'){
                     Toast({
                       message: '删除成功',

@@ -17,16 +17,14 @@
           <li class="lis" is-link v-for="item in data">
             <router-link :to="'/textdetail/'+item.ID">
                     <div>
-                      <img :src="'http://localhost:3000/images/'+item.src" alt="">
+                      <img :src="'http://139.224.227.124:3000/images/'+item.src" alt="">
                     </div>
                     <div>
                         <h4>{{item.title}}<span>——{{item.name}}</span></h4>
                         <p>{{item.introduction}}</p>
                     </div>
             </router-link>
-         </li>
-
-        
+         </li>        
          </ul>
         
       
@@ -37,13 +35,19 @@
 </template>
 
 <script>
+ import { Indicator } from 'mint-ui'
  import { Toast } from 'mint-ui'
 export default {
   data(){
     return {
         data:''
     }
-  },beforeRouteEnter(to, from, next) {
+  },beforeCreate(){
+       Indicator.open()
+    }
+    , updated(){
+      Indicator.close()
+    },beforeRouteEnter(to, from, next) {
       let oo = localStorage.getItem("user_id");
       if(oo == null){
           Toast({
