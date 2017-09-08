@@ -12,6 +12,10 @@ import text from '@/components/chat/text'
 import textdetail from '@/components/chat/textdetail'
 import userList from '@/components/user/userList'
 
+//音乐
+import music from '@/components/music/music'
+import musicdei from '@/components/music/musicdei'
+
 Vue.use(Router)
 
 export default new Router({
@@ -48,6 +52,14 @@ export default new Router({
             path: '/userList',
             name: 'userList',
             component: userList //我的文章列表
+        }, {
+            path: '/music',
+            name: 'music',
+            component: music //音乐
+        }, {
+            path: '/musicdei',
+            name: 'musicdei',
+            component: musicdei //音乐
         }
     ]
 })

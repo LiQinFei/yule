@@ -26,14 +26,10 @@
    
    
       <mt-field label="内容" placeholder="请输入内容" type="textarea" rows="10" v-model="contents"></mt-field>
-
       <div class="tijiao">
           <mt-button type="default" size="large"  @click.native="sendText">发表</mt-button>   
-         
-
       </div>
-
-       
+        
   </div>
 </template>
 

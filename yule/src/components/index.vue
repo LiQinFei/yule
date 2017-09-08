@@ -37,29 +37,14 @@
             <div class="sli">
               <div class="slis">
                   <ul class="slis1">
-                    <li>大秦音乐</li>
-                    <li>藏头诗生成</li>
-                    <li>星座运势</li>
-                    <li>你好</li>
-                    
+                    <li> <router-link to="/music">大秦音乐</router-link> </li>
+                      <li> <router-link to="/music">大秦音乐</router-link> </li>
+                       <li> <router-link to="/music">大秦音乐</router-link> </li>
                   </ul>
                   <ul class="slis2">
                  
-                      <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li><li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li><li>你好</li>
-                    <li>你好</li>
-                    <li>你好</li>
-                  
+                      <li> <router-link to="/music">大秦音乐</router-link> </li>
+                     <li> <router-link to="/music">大秦音乐</router-link> </li>
                   </ul>
               </div>
 
@@ -300,17 +285,24 @@ export default {
         white-space:nowrap;
         
         li{
+           background: #ffffff;
           display: inline-block;
           height: 80%;
           box-sizing: border-box;
-          padding: 1rem;
+         
           border: 1px solid #dddddd;
           border-radius: 30px;
           margin-left: 30px;
           &:first-child{
             margin-left: 20px;
           }
-          background: #ffffff;
+        
+           a{
+              padding: 1rem;
+            display:block;
+             box-sizing: border-box;
+            color: #2c3e50;
+          }
         }
       }
        .slis2{
@@ -319,7 +311,7 @@ export default {
          
         li{
           box-sizing: border-box;
-          padding: 1rem;
+     
           display: inline-block;
           height: 80%;
           border: 1px solid #dddddd;
@@ -328,6 +320,12 @@ export default {
         background: #ffffff;
              &:first-child{
             margin-left: 50px;
+          }
+            a{
+              padding: 1rem;
+            display:block;
+             box-sizing: border-box;
+            color: #2c3e50;
           }
         }
       }
