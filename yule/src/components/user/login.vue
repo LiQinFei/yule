@@ -4,9 +4,9 @@
    
  
     <mt-header class="heards"  title="登陆">
-        <router-link to="/" slot="left">
-            <mt-button icon="back">返回</mt-button>
-        </router-link>
+       
+            <mt-button slot="left" icon="back" @click="back">返回</mt-button>
+     
         <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
 
@@ -56,7 +56,9 @@ export default {
   },methods:{
       register(){
           this.$router.push({name:'register'})
-      },
+      },back(){
+           this.$router.back(-1)
+         },
       login(){
            var that = this
                  Indicator.open()     

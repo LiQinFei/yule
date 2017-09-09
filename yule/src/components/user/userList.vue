@@ -13,7 +13,7 @@
 
           <mt-cell v-for="list in data" v-bind:title="list.title" class="lists" :to="'/textdetail/'+list.ID">
             <mt-button class="buttons" type="danger" v-on:click.stop.prevent ="del(list.ID)">删除</mt-button>
-            <img slot="icon" :src="'http://localhost/images/'+list.src" width="25" height="25">
+            <img slot="icon" :src="'http://139.224.227.124:3000/images/'+list.src" width="25" height="25">
         </mt-cell>
         
         
@@ -54,9 +54,13 @@ export default {
       }
     },
   created(){
-         let oo = localStorage.getItem("name");
+        
+        },
+        activated(){
+            let oo = localStorage.getItem("name");
            this.getList(oo)
-        },methods:{
+        }
+        ,methods:{
              getList(oo){
           var that = this
            this.$ajax({

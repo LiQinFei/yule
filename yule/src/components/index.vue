@@ -38,13 +38,13 @@
               <div class="slis">
                   <ul class="slis1">
                     <li> <router-link to="/music">大秦音乐</router-link> </li>
-                      <li> <router-link to="/music">大秦音乐</router-link> </li>
-                       <li> <router-link to="/music">大秦音乐</router-link> </li>
+                      
+                       <li> <router-link to="/history">历史的今天</router-link> </li>
                   </ul>
                   <ul class="slis2">
-                 
-                      <li> <router-link to="/music">大秦音乐</router-link> </li>
-                     <li> <router-link to="/music">大秦音乐</router-link> </li>
+          
+                      <li> <router-link to="/joke">内涵笑话</router-link> </li>
+                     <li> <router-link to="/poetry">我要当诗人</router-link> </li>
                   </ul>
               </div>
 
@@ -98,18 +98,34 @@
 <script>
 import { Indicator } from 'mint-ui';
  import { Toast } from 'mint-ui'
+ import Vue from 'vue'
 export default {
   name: 'hello',
   data () {
     return {
     
-      selected:'kuaile',
+      selected:'jiaoliu',
       user:'',
       data:[],
       src:'',
       upImg:false
     }
   },
+  // beforeRouteEnter(to, from, next) {
+  //     let oo = localStorage.getItem("user_id");
+  //     if(oo == null){
+  //        next(vm => {
+  //          setTimeout(function(){
+  //             vm.$router.go(0)
+  //          },50)
+          
+  //       })
+        
+       
+  //     } else {
+  //       next()
+  //     }
+  //   },
   created(){
    
     this.user =  localStorage.getItem("user_id")
@@ -117,7 +133,16 @@ export default {
         this.getUser()
     }
  
-  },mounted(){
+  },
+  activated(){
+     this.user =  localStorage.getItem("user_id")
+    if(this.user){
+        this.getUser()
+    }
+  },deactivated(){
+      this.selected = 'jiaoliu'
+  }
+  ,mounted(){
      
   },methods:{
     getUser(){
@@ -141,7 +166,7 @@ export default {
               })
     },
     denglu(){
-
+        console.log(this.user)
       if(this.user == null){
         this.$router.push({name:'login'})
       }
@@ -258,8 +283,8 @@ export default {
 .close{
   width: 100%;
   text-align: center;
-  padding: 20px;
-  margin-top: 1rem;
+  padding: 10px;
+
   box-sizing: border-box;
 }
 

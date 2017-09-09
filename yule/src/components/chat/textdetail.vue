@@ -70,9 +70,16 @@ export default {
       }
     },
   created(){
-           var id =  this.$route.params
+          
+        }
+        ,activated(){
+          Indicator.open()
+             var id =  this.$route.params
            this.getList(id)
-        },methods:{
+        },deactivated(){
+          this.data = ''
+        }
+        ,methods:{
              getList(id){
           var that = this
            this.$ajax({

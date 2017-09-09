@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="boxs">
     
-       <mt-header class="heards">
+       <mt-header class="heards" fixed>
         
           <mt-button icon="back"  @click="back" slot="left">返回</mt-button>
       
@@ -17,7 +17,7 @@
           <li class="lis" is-link v-for="item in data">
             <router-link :to="'/textdetail/'+item.ID">
                     <div>
-                      <img :src="'http://localhost:3000/images/'+item.src" alt="">
+                      <img :src="'http://139.224.227.124:3000/images/'+item.src" alt="">
                     </div>
                     <div>
                         <h4>{{item.title}}<span>——{{item.name}}</span></h4>
@@ -61,8 +61,14 @@ export default {
       }
     },
   created(){
-           this.getList()
-        },methods:{
+          
+        },activated(){
+      
+          
+            this.getList()
+        }
+        
+        ,methods:{
              getList(){
           var that = this
            this.$ajax({
@@ -89,7 +95,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.boxs{
+  padding-top: 40px;
+  box-sizing: border-box;
+}
     ul{
       width: 100%;
       height: 100%;

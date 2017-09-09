@@ -16,6 +16,15 @@ import userList from '@/components/user/userList'
 import music from '@/components/music/music'
 import musicdei from '@/components/music/musicdei'
 
+//笑话
+import joke from '@/components/joke/joke'
+
+//历史今天
+import history from '@/components/history/history'
+
+//藏头诗   
+import poetry from '@/components/poetry/poetry'
+
 Vue.use(Router)
 
 export default new Router({
@@ -60,6 +69,18 @@ export default new Router({
             path: '/musicdei',
             name: 'musicdei',
             component: musicdei //音乐
+        },{
+            path: '/joke',
+            name: 'joke',
+            component: joke //笑话
+        },{
+            path: '/history',
+            name: 'history',
+            component: history //历史今天
+        },{
+            path: '/poetry',
+            name: 'poetry',
+            component: poetry //藏头诗
         }
     ]
 })

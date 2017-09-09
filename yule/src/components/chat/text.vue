@@ -62,7 +62,12 @@ export default {
   created(){
          this.user_id = localStorage.getItem("user_id")
        
-        },methods:{
+        },
+        activated(){
+        this.user_id = localStorage.getItem("user_id")
+        }
+       
+        ,methods:{
         
          back(){
            this.$router.back(-1)

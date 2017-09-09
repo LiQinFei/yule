@@ -1,6 +1,6 @@
 <template>
   <div class="allbox">
-     <mt-header fixed class="heards">
+     <mt-header fixed class="heards" title="大秦音乐">
           <mt-button icon="back" @click="back" slot="left">返回</mt-button>
       </mt-header>
 <div class="top">
@@ -82,10 +82,10 @@ export default {
                 .then(function (response) {
                   Indicator.close()
                   if( response.data.showapi_res_code == 0){
-                       console.log(response.data.showapi_res_body.pagebean)     
+                          
                       that.data = that.data.concat(response.data.showapi_res_body.pagebean.contentlist) 
                       
-                       console.log(that.data)
+                      
                     
                              that.loading = false;
                       

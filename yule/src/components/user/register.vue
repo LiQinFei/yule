@@ -4,9 +4,9 @@
    
  
     <mt-header class="heards"  title="注册">
-        <router-link to="/" slot="left">
-            <mt-button icon="back">返回</mt-button>
-        </router-link>
+        
+            <mt-button slot="left" @click="back" icon="back">返回</mt-button>
+       
         <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
   
@@ -54,6 +54,9 @@ export default {
   },mounted(){
        
   },methods:{
+    back(){
+           this.$router.back(-1)
+         },
     register(){
       var that = this
       var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
